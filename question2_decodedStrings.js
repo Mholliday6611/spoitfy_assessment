@@ -15,8 +15,16 @@ function decodeString(s){
 
 			multiplier.push(parseInt(s[i]))
 
-		}else if(s[i] !== "[" && s[i] !== "]"){
-			char.push(s[i])
+		}else if(s[i] == "["){
+			let section = ""
+			for(let x = i+1; x<s.length;x++){
+				if(isNaN(parseInt(s[x])) && s[x] !== "]"){
+					section += s[x]
+				}else{
+					break;
+				}
+			}
+			char.push(section)
 		}
 	}
 
@@ -38,4 +46,4 @@ function decodeString(s){
 
 console.log(decodeString("4[ab]"))
 console.log(decodeString("2[b3[a]]"))
-console.log(decodeString("5[f2[b3[a]]]"))
+console.log(decodeString("3[ty2[br3[aff]]]"))
